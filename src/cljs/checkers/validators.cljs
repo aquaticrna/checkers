@@ -10,9 +10,10 @@
       (if (and (= "x" dest) ;destination space is empty
                (= (subs source 0 1) @turn);the source space contains the right color piece
                (not= (subs mid 0 1) @turn) ;the piece inbetween source and dest is the opposite color
+               (not= (subs mid 0 1) "x") ;the space in between isn't empty
                (if (not= (subs source 1) "k") ;if it's not a king
-                 (if (= turn "w") ;and it's white's turn
-                   (and (= 2 (- sx dx)) (= -2 (.abs js/Math (- sy dy))));or jumping 2 up and 2 left/right with
+                 (if (= @turn "w") ;and it's white's turn
+                   (and (= -2 (- sx dx)) (= 2 (.abs js/Math (- sy dy))));or jumping 2 up and 2 left/right with
                    (and (= 2 (- sx dx)) (= 2 (.abs js/Math (- sy dy))))) ;or stepping 2 down and 2 left/right
                  (and (= 2 (.abs js/Math (- sx dx)) (= 2 (.abs js/Math (- sy dy))))))) ;if it is a king it must move 2 up/down and 2 left/right
         true
