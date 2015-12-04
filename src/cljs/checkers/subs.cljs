@@ -42,3 +42,8 @@
   :dest
   (fn [db]
     (reaction (:dest @db))))
+
+(re-frame/register-sub
+  :pieces
+  (fn [db]
+    (reaction (:pieceCount @db))))

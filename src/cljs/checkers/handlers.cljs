@@ -37,3 +37,10 @@
   :jump
   (fn [db [_ [color sx sy dx dy mx my]]]
     (assoc-in (assoc-in (assoc-in db [:boardState sy sx] "x") [:boardState dy dx] color) [:boardState my mx] "x")))
+
+(re-frame/register-handler
+  :pieces
+  (fn [db [_ turn]]
+    (if (= turn "w")
+      (update-in db [:pieceCount :r] (fn [val] (dec val)))
+      (update-in db [:pieceCount :w] (fn [val] (dec val))))))
